@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKSHAT THE BODYBUILDER</title>
+<style>
+*{box-sizing:border-box;font-family:Arial} body{margin:0;background:#000;color:#fff}
+.hidden{display:none!important} button{border:none;cursor:pointer;border-radius:12px}
+#lock{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+#lock h1{font-size:50px;letter-spacing:3px;margin:0} #lock h1 span{color:#00ff88}
+#lock .sub{color:#00ff88;font-weight:bold;letter-spacing:4px;font-size:18px;margin-top:5px}
+#lock input{padding:15px;width:100%;border-radius:12px;border:2px solid #00ff88;background:#111;color:#fff;font-size:20px;text-align:center}
+#lock button{background:#00ff88;color:#000;padding:15px 40px;font-size:20px;font-weight:bold}
+header{padding:15px;display:flex;justify-content:space-between;align-items:center;background:#111;position:sticky;top:0;z-index:10}
+header b{font-size:24px;letter-spacing:2px} header b span{color:#00ff88} header .tag{font-size:11px;color:#00ff88;font-weight:bold;letter-spacing:1px}
+.days{display:flex;gap:8px;overflow:auto;padding:12px} .daybtn{background:#222;color:#fff;padding:12px 16px;white-space:nowrap} .daybtn.active{background:#00ff88;color:#000;font-weight:bold}
+.card{background:#151515;margin:12px;border-radius:18px;padding:14px;border:1px solid #333}
+.badge{background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.musicBox{background:#1a1a2e;padding:14px;margin:12px;border-radius:14px;border:2px solid #ff0055;position:sticky;top:60px;z-index:9}
+.musicBox select{width:100%;padding:12px;border-radius:8px;background:#000;color:#fff;border:1px solid #555;font-size:16px;margin:8px 0}
+.mbtn{background:#ff0055;color:#fff;padding:12px 16px;font-weight:bold;margin:4px;font-size:16px}
+.mbtn2{background:#00ff88;color:#000;padding:12px 16px;font-weight:bold;margin:4px;font-size:16px}
+.animBox{height:180px;background:#111;border:2px solid #00ff88;border-radius:14px;overflow:hidden;position:relative;margin:10px 0}
+.floor{position:absolute;bottom:0;left:0;right:0;height:16px;background:#2a2a2a;border-top:4px solid #00ff88;z-index:1}
+.bench{position:absolute;width:58px;height:42px;background:#ffcc00;border:2px solid #000;bottom:16px;border-radius:4px;z-index:2}
+.benchIncline{right:28px} .benchDecline{left:28px}
+.man{position:absolute;z-index:3}
+.head{width:26px;height:26px;background:#ffd9b3;border-radius:50%;position:absolute;border:2px solid #000}
+.torso{position:absolute;background:#00ff88;border-radius:8px;border:2px solid #000}
+.hand{position:absolute;width:16px;height:10px;background:#ffd9b3;border:2px solid #000;border-radius:50%;bottom:0;z-index:5}
+.foot{position:absolute;width:16px;height:10px;background:#ffd9b3;border:2px solid #000;border-radius:50%;bottom:0;z-index:5}
+.arm{position:absolute;background:#1e3a8a;border:2px solid #000;border-radius:6px}
+.leg{position:absolute;background:#111;border:2px solid #000;border-radius:6px}
+.pushup .man{left:50px;bottom:16px;width:160px;height:90px}
+.pushup .bodyMove{position:absolute;left:0;top:0;width:100%;height:100%;animation:akPush 1.2s infinite}
+@keyframes akPush{0%,100%{transform:translateY(0)}50%{transform:translateY(16px)}}
+.pushup .head{left:118px;top:8px} .pushup .torso{width:80px;height:22px;left:35px;top:14px} .pushup .arm{width:10px;height:42px;left:115px;top:28px} .pushup .leg{width:10px;height:60px;left:20px;top:16px;transform:rotate(75deg)} .pushup .hand{left:110px} .pushup .foot{left:8px}
+.incline .man{left:40px;bottom:16px;width:160px;height:90px} .incline .bodyMove{position:absolute;left:0;top:0;width:100%;height:100%;animation:akPush 1.2s infinite} .incline .head{left:118px;top:0} .incline .torso{width:80px;height:22px;left:35px;top:8px;transform:rotate(-12deg)} .incline .arm{width:10px;height:40px;left:115px;top:20px} .incline .leg{width:10px;height:60px;left:20px;top:16px;transform:rotate(75deg)} .incline .hand{left:110px} .incline .foot{left:8px}
+.decline .man{left:60px;bottom:16px;width:160px;height:90px} .decline .bodyMove{position:absolute;left:0;top:0;width:100%;height:100%;animation:akPush 1.2s infinite} .decline .head{left:118px;top:18px} .decline .torso{width:80px;height:22px;left:35px;top:22px;transform:rotate(10deg)} .decline .arm{width:10px;height:42px;left:115px;top:36px} .decline .leg{width:10px;height:60px;left:20px;top:20px;transform:rotate(70deg)} .decline .hand{left:110px} .decline .foot{left:8px}
+.plank .man{left:50px;bottom:16px;width:160px;height:90px} .plank .head{left:118px;top:10px} .plank .torso{width:80px;height:22px;left:35px;top:14px} .plank .arm{width:10px;height:42px;left:115px;top:28px} .plank .leg{width:10px;height:60px;left:20px;top:16px;transform:rotate(75deg)} .plank .hand{left:110px} .plank .foot{left:8px}
+.stand .man{left:125px;bottom:16px;width:60px;height:125px;animation:sq 1.2s infinite} @keyframes sq{0%,100%{transform:translateY(0)}50%{transform:translateY(20px)}} .stand .head{left:17px;top:0} .stand .torso{width:32px;height:46px;left:14px;top:26px} .stand .arm{width:10px;height:34px;left:4px;top:28px} .stand .leg{width:11px;height:50px;left:16px;top:70px} .stand .leg2{left:36px}
+.jump .man{left:125px;bottom:16px;width:60px;height:125px;animation:jp .7s infinite} @keyframes jp{0%,100%{transform:translateY(16px)}50%{transform:translateY(-26px)}} .jump .head{left:17px;top:0} .jump .torso{width:32px;height:46px;left:14px;top:26px} .jump .arm{width:10px;height:34px;left:4px;top:28px} .jump .leg{width:11px;height:50px;left:16px;top:70px}
+.neck .man{left:125px;bottom:16px;width:60px;height:125px} .neck .head{left:17px;top:0;animation:nk 1.2s infinite} @keyframes nk{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}} .neck .torso{width:32px;height:46px;left:14px;top:26px} .neck .arm{width:10px;height:34px;left:4px;top:28px} .neck .leg{width:11px;height:50px;left:16px;top:70px}
+.controls{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap} .count{font-size:26px;font-weight:bold;min-width:60px;text-align:center} .cbtn{background:#00ff88;color:#000;width:48px;height:48px;font-size:28px;font-weight:bold} .doneBtn{background:#222;color:#00ff88;padding:12px 16px;border:1px solid #00ff88;font-weight:bold} .done{background:#002a17!important} .timer{font-size:22px;font-weight:bold;color:#ffcc00}
+</style>
+</head>
+<body>
+<div id="lock"><h1>AK<span>SHAT</span></h1><div class="sub">THE BODYBUILDER</div><p>Private Exercise App - Sirf Tere Liye</p>
+<div style="display:flex;gap:8px;width:90%;max-width:320px;margin:10px 0;align-items:center"><input id="pass" type="password" placeholder="Password" autocomplete="off"><button onclick="showPass()" style="background:#222;color:#fff;padding:14px 14px;font-size:20px;border:1px solid #555">👁️</button></div>
+<button onclick="unlock()">UNLOCK 🔓</button><p id="err" style="color:red"></p></div>
+<div id="app" class="hidden">
+<header><b>AK<span>SHAT</span></b><span class="tag">THE BODYBUILDER</span></header>
+<div class="musicBox"><b>🎵 MUSIC - App Ke Andar Hi Bajega</b><br><span style="font-size:12px;color:#aaa">YouTube nahi khulega, exercise saamne rahegi</span><br>
+<select id="songSelect" onchange="changeSong()">
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">🔥 Workout Beat 1 - High Energy</option>
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">💪 Workout Beat 2 - Power</option>
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">⚡ Workout Beat 3 - Fast</option>
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3">🏋️ Workout Beat 4 - Beast Mode</option>
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3">🎯 Workout Beat 5 - Focus</option>
+</select><br>
+<button class="mbtn2" id="musicBtn" onclick="toggleMusic()">▶️ PLAY MUSIC</button>
+<button class="mbtn" onclick="nextSong()">⏭️ Next Gaana</button>
+<audio id="player" loop style="width:100%;margin-top:8px" controls></audio>
+</div>
+<div class="days" id="days"></div><div id="list"></div><div style="padding:20px;text-align:center;color:#888">Mon=Thu (7) • Tue=Fri (10) • Wed=Sat (10) • Sun=Rest</div>
+</div>
+<script>
+function showPass(){let p=document.getElementById('pass'); if(p.type==="password"){p.type="text"}else{p.type="password"}}
+let curSong=0; const songs=document.getElementById('songSelect');
+function changeSong(){let p=document.getElementById('player');p.src=songs.value;p.play();document.getElementById('musicBtn').innerText='⏸️ PAUSE MUSIC'}
+function toggleMusic(){var p=document.getElementById('player');var b=document.getElementById('musicBtn');if(!p.src){p.src=songs.value}if(p.paused){p.play();b.innerText='⏸️ PAUSE MUSIC'}else{p.pause();b.innerText='▶️ PLAY MUSIC'}}
+function nextSong(){curSong=(curSong+1)%songs.options.length;songs.selectedIndex=curSong;changeSong()}
+const data={
+"Monday":[
+{n:"Normal Push Ups",r:45,t:"pushup",d:"Haath fixed zameen pe - Chhati neeche-upar - Teri video jaisa"},
+{n:"Incline Push Ups",r:75,t:"incline",d:"Haath stool pe, pair zameen pe"},
+{n:"Decline Push Ups",r:36,t:"decline",d:"Pair stool pe, haath zameen pe"},
+{n:"Diamond Push Up",r:36,t:"pushup",d:"Dono haath se diamond banao"},
+{n:"Cervical Flexion",r:30,t:"neck",d:"Gardan aage jhukao"},
+{n:"Cervical Extension",r:30,t:"neck",d:"Gardan peeche le jao"},
+{n:"Dips",r:36,t:"pushup",d:"Chair / Bed ke sahare Dips"}],
+"Tuesday":[
+{n:"Low to High Row",r:45,t:"stand",d:"Bag neeche se upar kheecho"},
+{n:"Bag Up & Down",r:45,t:"stand",d:"Bag upar-neeche"},
+{n:"Concentration Curl - Left",r:36,t:"stand",d:"Left hand 36"},
+{n:"Concentration Curl - Right",r:36,t:"stand",d:"Right hand 36"},
+{n:"Plank",r:135,t:"plank",d:"135 Sec - Seedha hold",sec:135},
+{n:"Leg Raises",r:45,t:"jump",d:"Let ke pair upar"},
+{n:"Twist",r:60,t:"stand",d:"Kamar ghumao"},
+{n:"Crunches",r:60,t:"plank",d:"Pet ki exercise"},
+{n:"Lying Towel Row",r:45,t:"stand",d:"Towel se row"},
+{n:"Hammer Curls",r:45,t:"stand",d:"Dono haath hammer"}],
+"Wednesday":[
+{n:"Shoulder Tap",r:36,t:"plank",d:"Plank me shoulder tap"},
+{n:"Normal Squats",r:45,t:"stand",d:"Normal Squats"},
+{n:"Lunges - Left",r:45,t:"stand",d:"Left leg lunges"},
+{n:"Lunges - Right",r:45,t:"stand",d:"Right leg lunges"},
+{n:"Jumping Squats",r:45,t:"jump",d:"Jump karke squat"},
+{n:"Bottle Curls",r:45,t:"stand",d:"Bottle se curl"},
+{n:"Reverse Rest",r:45,t:"plank",d:"Reverse Rest"},
+{n:"Farmer Hold",r:60,t:"plank",d:"Farmer Hold 60 Sec",sec:60},
+{n:"Pike Push Up",r:36,t:"pushup",d:"Kamar upar utha ke"},
+{n:"Calf Raises",r:60,t:"stand",d:"Edi upar uthao"}]};
+data["Thursday"]=data["Monday"]; data["Friday"]=data["Tuesday"]; data["Saturday"]=data["Wednesday"]; data["Sunday"]=[];
+const days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]; let cur="Monday";
+function unlock(){if(document.getElementById('pass').value.toUpperCase()==="AKSHAT"){document.getElementById('lock').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderDays();render()}else{document.getElementById('err').innerText="Galat Password! AKSHAT dalo"}}
+function renderDays(){document.getElementById('days').innerHTML=days.map(d=>`<button class="daybtn ${d===cur?'active':''}" onclick="setDay('${d}')">${d}</button>`).join('')}
+function setDay(d){cur=d;renderDays();render()}
+function manHtml(t){let bench='';if(t==='incline')bench='<div class="bench benchIncline"></div>';if(t==='decline')bench='<div class="bench benchDecline"></div>';let inner='';if(t==='pushup'||t==='incline'||t==='decline'){inner=`<div class="bodyMove"><div class="head"></div><div class="torso"></div><div class="arm"></div><div class="leg"></div></div><div class="hand"></div><div class="foot"></div>`}else{inner=`<div class="head"></div><div class="torso"></div><div class="arm"></div><div class="leg"></div><div class="leg leg2"></div>`}return `<div class="animBox"><div class="floor"></div>${bench}<div class="man ${t}">${inner}</div><div style="position:absolute;bottom:20px;width:100%;text-align:center;font-size:11px;color:#00ff88">● AKSHAT STYLE - Zameen Pe</div></div>`}
+function render(){let list=document.getElementById('list');if(cur==="Sunday"){list.innerHTML=`<div class="card"><h3>😴 Sunday = REST DAY</h3><p>Aaj rest hai Akshat. Kal se phir mode ON!</p></div>`;return}list.innerHTML=data[cur].map((ex,i)=>`<div class="card" id="card${i}"><span class="badge">${cur} • ${i+1}</span><h3>${ex.n} = ${ex.r} ${ex.sec?'Seconds':'Reps'}</h3><p style="color:#aaa;font-size:13px">${ex.d}</p>${manHtml(ex.t)}${ex.sec?`<div class="timer" id="tm${i}">${ex.sec} sec</div><div class="controls"><button class="cbtn" onclick="startTimer(${i},${ex.sec})">▶</button><button class="doneBtn" onclick="done(${i})">Done ✓</button></div>`:`<div class="controls"><button class="cbtn" onclick="chg(${i},-1)">-</button><div class="count"><span id="c${i}">0</span> / ${ex.r}</div><button class="cbtn" onclick="chg(${i},1)">+</button><button class="doneBtn" onclick="done(${i})">Done ✓</button></div>`}</div>`).join('')}
+let timers={}; function chg(i,d){let el=document.getElementById('c'+i);let v=parseInt(el.innerText)+d;if(v<0)v=0;el.innerText=v;if(v>=data[cur][i].r)done(i)} function done(i){document.getElementById('card'+i).classList.add('done')} function startTimer(i,sec){let left=sec;clearInterval(timers[i]);timers[i]=setInterval(()=>{left--;document.getElementById('tm'+i).innerText=left+" sec";if(left<=0){clearInterval(timers[i]);done(i);alert("Ho gaya! Done 💪")}},1000)}
+</script>
+</body>
+</html>
